@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مرجع المرحلة الثانية | الأمن السيبراني</title>
+<style>
+:root{
+  --bg:#080611;--panel:#110d21;--panel2:#17112b;--gold:#d6a84f;--gold2:#f0cf7a;
+  --purple:#5b2a86;--text:#f7f4ff;--muted:#aaa2bd;--line:#33264c;--danger:#ef6672;
+  --ok:#55d6a0;--shadow:0 18px 60px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box} body{margin:0;background:
+radial-gradient(circle at 20% 0%,rgba(91,42,134,.28),transparent 32%),
+radial-gradient(circle at 90% 20%,rgba(214,168,79,.12),transparent 25%),var(--bg);
+color:var(--text);font-family:"Tahoma","Arial",sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit} button{cursor:pointer}
+.hidden{display:none!important}.container{width:min(1180px,94%);margin:auto}
+.topbar{height:70px;border-bottom:1px solid var(--line);background:rgba(8,6,17,.82);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
+.topbar .inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800}.shield{width:42px;height:42px;border:2px solid var(--gold);border-radius:13px;display:grid;place-items:center;color:var(--gold);font-size:20px;box-shadow:0 0 25px rgba(214,168,79,.12)}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:11px 18px;border-radius:12px;transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 8px 25px rgba(0,0,0,.25)}
+.btn.gold{background:linear-gradient(135deg,#b98129,#e4bd64);color:#160f08;border:0;font-weight:900}
+.btn.danger{color:#fff;border-color:#71313a;background:#34151a}.btn.small{padding:8px 12px;font-size:13px}
+.hero{min-height:calc(100vh - 70px);display:grid;place-items:center;text-align:center;padding:55px 0}
+.hero-card{width:min(900px,100%);padding:55px 28px;border:1px solid rgba(214,168,79,.3);border-radius:30px;background:linear-gradient(145deg,rgba(23,17,43,.9),rgba(10,7,19,.92));box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,rgba(214,168,79,.08),transparent 65%);pointer-events:none}
+.kicker{color:var(--gold2);font-size:14px;letter-spacing:1px;margin-bottom:20px}
+h1{font-size:clamp(28px,5vw,52px);margin:0 auto 18px;line-height:1.45}
+.hero p{font-size:18px;color:var(--muted);margin:12px 0}
+.student{font-weight:800;color:#fff}.hero .main-btn{margin-top:30px;font-size:18px;padding:16px 30px;border-radius:16px}
+.page{padding:32px 0 70px}.page-title{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:25px}
+.page-title h2{margin:0;font-size:30px}.subtitle{color:var(--muted);margin-top:7px}
+.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.course-card{padding:30px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,var(--panel2),var(--panel));box-shadow:var(--shadow);transition:.25s}
+.course-card:hover{transform:translateY(-5px);border-color:rgba(214,168,79,.65)}
+.course-num{width:68px;height:68px;border-radius:18px;background:rgba(214,168,79,.14);display:grid;place-items:center;color:var(--gold2);font-size:32px;font-weight:900;margin-bottom:18px;box-shadow:0 8px 24px rgba(214,168,79,.10)}
+.course-card .course-num{font-size:32px!important}
+.course-card h3{margin:0 0 8px;font-size:23px}.course-card p{color:var(--muted);line-height:1.8}
+.course-split{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:20px;align-items:start;direction:ltr;padding-right:270px;width:100%;max-width:100%;}
+.course-content{min-width:0;width:100%;max-width:100%;direction:rtl;margin:0 auto;overflow-x:hidden;}
+.course-content .course-grid{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.course-content .course-card{min-height:250px;padding:38px}
+.course-content .day{width:100%;max-width:none;margin:12px auto 0}
+.course-content .lectures{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:18px;width:100%;}
+.course-content .lecture{min-height:220px;padding:24px}
+.tabs{display:flex;flex-direction:column;align-items:stretch;gap:9px;overflow:auto;padding:8px 0 14px 0;margin:0;width:250px;max-height:calc(100vh - 150px);position:fixed;top:88px;right:0;z-index:20;scrollbar-width:thin;direction:rtl}
+.tab{white-space:nowrap;width:100%;border:1px solid rgba(214,168,79,.38);background:linear-gradient(135deg,rgba(28,20,45,.96),rgba(15,11,27,.96));color:#d8cda9;padding:11px 15px;border-radius:12px;text-align:right;font-weight:800;transition:.2s;box-shadow:0 5px 18px rgba(0,0,0,.16)}
+.tab.active{background:linear-gradient(135deg,#d6a84f,#f0cf7a);color:#171008;border-color:#f0cf7a;box-shadow:0 8px 25px rgba(214,168,79,.25)}
+.tab:hover{background:linear-gradient(135deg,#76502a,#3b2860);color:#fff;border-color:var(--gold2);transform:translateX(-3px)}
+.day-card-sat{border-color:rgba(214,168,79,.55)!important;background:linear-gradient(145deg,rgba(55,39,17,.55),rgba(17,13,33,.95))!important}
+.day-card-mon{border-color:rgba(70,170,190,.55)!important;background:linear-gradient(145deg,rgba(15,53,63,.45),rgba(17,13,33,.95))!important}
+.day-card-tue{border-color:rgba(126,91,190,.6)!important;background:linear-gradient(145deg,rgba(55,31,78,.5),rgba(17,13,33,.95))!important}
+.day{border:1px solid var(--line);border-radius:20px;background:rgba(17,13,33,.9);overflow:hidden}
+.day-head{padding:22px 28px;background:linear-gradient(90deg,rgba(91,42,134,.38),rgba(214,168,79,.08));border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.day-head h3{margin:0}.day-head span{color:var(--gold2);font-size:13px}
+.day-head.sat{background:linear-gradient(90deg,rgba(214,168,79,.42),rgba(214,168,79,.08))}
+.day-head.mon{background:linear-gradient(90deg,rgba(45,150,170,.38),rgba(45,150,170,.06))}
+.day-head.tue{background:linear-gradient(90deg,rgba(111,72,165,.45),rgba(111,72,165,.07))}
+@media(max-width:800px){
+  .course-split{grid-template-columns:1fr;direction:rtl;padding-right:0;width:100%;}
+  .course-content{width:100%;max-width:100%}
+  .course-content .course-grid{grid-template-columns:1fr}
+  .course-content .lectures{grid-template-columns:1fr}
+  .course-content .course-card{min-height:180px;padding:28px}
+  .course-content .lecture{min-height:170px}
+  .tabs{width:100%;max-height:280px;position:static;order:-1}
+}
+.lectures{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px}
+.lecture{border:1px solid var(--line);border-radius:16px;padding:17px;background:#0d0a18;min-height:150px}
+.lecture .time{color:var(--gold2);font-size:12px;margin-bottom:10px}.lecture h4{margin:0 0 8px;font-size:16px;line-height:1.6}.lecture .room,.lecture .teacher{color:var(--muted);font-size:12px;line-height:1.8}
+.material{margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}.material img{width:100%;max-height:210px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}.material a{display:inline-block;color:var(--gold2);margin:5px 0;text-decoration:none}.material .notes{white-space:pre-wrap;color:#ddd6e9;font-size:13px;line-height:1.7}
+.empty{padding:22px;color:var(--muted);text-align:center}
+.admin-grid{display:grid;grid-template-columns:280px 1fr;gap:18px}.admin-panel,.editor{background:rgba(17,13,33,.95);border:1px solid var(--line);border-radius:20px;padding:20px}
+.admin-list{display:grid;gap:8px;max-height:70vh;overflow:auto}.admin-list button{text-align:right}
+.admin-list button.active{border-color:var(--gold);background:#201634}.field{display:grid;gap:7px;margin-bottom:14px}.field label{font-size:13px;color:var(--muted)}
+.field input,.field textarea,.field select{width:100%;background:#0b0813;color:#fff;border:1px solid var(--line);border-radius:11px;padding:11px;outline:none}
+.field textarea{min-height:110px;resize:vertical}.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.editor-actions{display:flex;gap:8px;flex-wrap:wrap}.preview-img{max-width:220px;max-height:130px;border-radius:10px;border:1px solid var(--line);object-fit:cover}
+.login{width:min(430px,94%);margin:70px auto;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}.login h2{margin-top:0}
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#1b1630;border:1px solid var(--gold);padding:12px 18px;border-radius:12px;transition:.25s;z-index:99}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.footer{text-align:center;color:#746c85;padding:30px 0;border-top:1px solid var(--line);font-size:13px}
+@media(max-width:800px){.course-grid,.admin-grid{grid-template-columns:1fr}.lectures{grid-template-columns:1fr}.hero-card{padding:40px 18px}.topbar .brand span{font-size:13px}.page{padding-left:10px;padding-right:10px}.course-content .lectures{padding:10px;grid-template-columns:1fr}.course-content .lecture{width:100%;min-width:0}.course-content .day{width:100%;min-width:0}.page-title{flex-wrap:wrap}.page-title>div{min-width:0}}
+
+/* ===== نسخة الهاتف + الحاسبة ===== */
+.mobile-only{display:none}
+.calc-page{width:min(520px,94%);margin:28px auto}
+.calc-box{background:linear-gradient(145deg,#15102a,#0b0915);border:1px solid rgba(214,168,79,.5);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.calc-screen{background:#07060c;border:1px solid var(--line);border-radius:16px;min-height:78px;padding:14px 16px;text-align:left;direction:ltr;color:var(--gold2);font-size:30px;font-weight:800;display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden;word-break:break-all;margin-bottom:14px}
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.calc-key{min-height:58px;border:1px solid var(--line);border-radius:14px;background:#17112b;color:#fff;font-size:20px;font-weight:800}
+.calc-key:hover{border-color:var(--gold)}
+.calc-key.op{color:var(--gold2);background:#211832}
+.calc-key.clear{color:#ffb8bd;background:#2a141b}
+.calc-key.equal{color:#111;background:linear-gradient(135deg,var(--gold2),var(--gold));}
+.mobile-tools{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.mobile-tool{width:100%;min-height:72px;border:1px solid rgba(214,168,79,.5);border-radius:18px;background:linear-gradient(145deg,rgba(91,42,134,.25),rgba(214,168,79,.08));color:#fff;padding:14px;text-align:right;display:flex;align-items:center;gap:14px}
+.mobile-tool .tool-icon{width:46px;height:46px;min-width:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#d6a84f,#8f6420);color:#120e19;font-size:24px;font-weight:900;box-shadow:0 8px 22px rgba(214,168,79,.18)}
+.mobile-tool h3{margin:0 0 4px;font-size:17px}.mobile-tool p{margin:0;color:var(--muted);font-size:12px}
+@media(max-width:800px){
+  body{overflow-x:hidden}
+  .topbar{height:auto;min-height:62px}
+  .topbar .inner{padding:9px 10px;gap:8px;flex-wrap:wrap}
+  .topbar .inner>div:last-child{display:flex;gap:5px;flex-wrap:wrap}
+  .topbar .brand{gap:7px;min-width:0}
+  .topbar .brand span{font-size:11px;white-space:nowrap}
+  .shield{width:32px;height:32px;min-width:32px}
+  .btn.small{padding:7px 9px;font-size:11px}
+  .hero{padding:22px 8px}
+  .hero-card{padding:28px 14px!important;border-radius:20px}
+  .hero-card h1{font-size:25px;line-height:1.75}
+  .hero-card .student{font-size:12px}
+  .main-btn{width:100%;min-height:48px}
+  .mobile-only{display:block}
+  .mobile-tool{min-height:68px}
+  .course-split{display:block!important;width:100%;padding:0}
+  .course-split .course-content{width:100%;max-width:100%;padding:0}
+  .course-split.week-choosing .course-content{display:none}
+  .course-split.week-choosing .tabs{display:flex;width:100%;max-height:none;overflow:visible;position:static;padding:4px 0}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .tabs .tab{width:100%;min-height:42px;padding:8px 5px;font-size:12px}
+  .course-content .course-grid{grid-template-columns:1fr;gap:10px}
+  .course-content .course-card{min-height:125px!important;padding:15px!important;border-radius:17px}
+  .course-content .course-card .course-num{width:42px!important;height:42px!important;font-size:18px!important;border-radius:12px}
+  .course-content .course-card h3{font-size:17px;margin:8px 0 5px}
+  .course-content .course-card p{font-size:12px;line-height:1.7}
+  .course-content .course-card .btn{font-size:11px;padding:7px 10px}
+  .course-content .day{border-radius:18px}
+  .day-head{padding:15px!important}
+  .day-head h3{font-size:16px}
+  .day-head span{font-size:11px}
+  .course-content .lectures{grid-template-columns:1fr!important;padding:9px!important;gap:9px!important}
+  .course-content .lecture{min-height:135px!important;padding:15px!important;border-radius:14px}
+  .course-content .lecture h4{font-size:15px;line-height:1.55}
+  .course-content .lecture .time{font-size:11px}
+  .page-title{gap:9px}
+  .page-title h2{font-size:21px}
+  .calc-page{width:94%;margin:18px auto}
+  .calc-box{padding:13px;border-radius:20px}
+  .calc-screen{min-height:68px;font-size:25px}
+  .calc-key{min-height:54px;font-size:18px}
+}
+
+
+/* ===== واجهة الجهاز المختارة ===== */
+body.view-mobile .hero-card{max-width:680px}
+body.view-mobile .device-title{font-size:15px}
+body.view-mobile .device-ref{width:100%;max-width:520px;margin:12px auto;padding:16px 18px;border-radius:18px}
+body.view-mobile .device-ref .device-icon{width:48px;height:48px;font-size:24px}
+body.view-laptop .device-ref{min-width:280px;padding:20px 24px}
+body.view-laptop .device-ref .device-icon{width:58px;height:58px;font-size:30px}
+body.view-laptop .course-content .course-card .course-num{width:78px;height:78px;font-size:34px!important}
+body.view-laptop .course-content .lecture{min-height:240px;padding:28px}
+body.view-laptop .course-content .lecture h4{font-size:19px}
+body.view-laptop .course-content .lectures{gap:22px;padding:22px}
+body.view-laptop .tabs{width:230px;right:8px}
+body.view-laptop .course-split{padding-right:250px}
+@media(max-width:800px){
+ body.view-laptop .course-split{padding-right:0}
+ body.view-laptop .tabs{position:static;width:100%}
+ body.view-laptop .course-content .lecture{min-height:160px;padding:18px}
+ body.view-laptop .course-content .lectures{grid-template-columns:1fr!important}
+}
+.device-ref{display:flex;align-items:center;gap:15px;text-align:right;border:1px solid rgba(214,168,79,.45);background:linear-gradient(145deg,rgba(23,17,43,.95),rgba(10,7,19,.95));color:var(--text);box-shadow:var(--shadow);cursor:pointer;transition:.2s}
+.device-ref:hover{transform:translateY(-3px);border-color:var(--gold2);box-shadow:0 14px 35px rgba(0,0,0,.3)}
+.device-icon{flex:0 0 auto;border-radius:16px;display:grid;place-items:center;background:rgba(214,168,79,.13);border:1px solid rgba(214,168,79,.45);color:var(--gold2)}
+.device-ref h3{margin:0 0 4px;font-size:20px}.device-ref p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.device-grid{display:grid;grid-template-columns:1fr;gap:12px;width:min(680px,100%);margin:28px auto 0}
+@media(min-width:801px){.device-grid{grid-template-columns:repeat(2,1fr);width:min(820px,100%)}.device-ref:first-child{grid-column:1/-1}}
+
+
+/* ===== تكبير محتوى قسم اللابتوب فقط ===== */
+body.view-laptop .course-content .course-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:28px;
+}
+body.view-laptop .course-content .course-card{
+  min-height:320px;
+  padding:44px 38px;
+  border-radius:26px;
+}
+body.view-laptop .course-content .course-card .course-num{
+  width:86px;
+  height:86px;
+  font-size:38px!important;
+  border-radius:22px;
+  margin-bottom:22px;
+}
+body.view-laptop .course-content .course-card h3{
+  font-size:27px;
+  line-height:1.5;
+}
+body.view-laptop .course-content .course-card p{
+  font-size:16px;
+  line-height:1.9;
+}
+body.view-laptop .course-content .course-card .btn{
+  font-size:15px;
+  padding:11px 18px;
+}
+body.view-laptop .course-content .lectures{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:26px;
+  padding:24px;
+}
+body.view-laptop .course-content .lecture{
+  min-height:280px;
+  padding:30px;
+  border-radius:22px;
+}
+body.view-laptop .course-content .lecture h4{
+  font-size:21px;
+  line-height:1.7;
+}
+body.view-laptop .course-content .lecture .time{
+  font-size:14px;
+}
+@media(max-width:1100px){
+  body.view-laptop .course-content .course-card{min-height:290px;padding:34px 28px}
+  body.view-laptop .course-content .course-card h3{font-size:23px}
+  body.view-laptop .course-content .lecture{min-height:250px;padding:24px}
+}
+
+
+/* ===== تكبير أيام ومحاضرات اللابتوب فقط ===== */
+body.view-laptop .course-content .course-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:32px;
+  align-items:stretch;
+}
+body.view-laptop .course-content .course-grid > .course-card{
+  min-height:340px;
+  padding:34px 30px !important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+body.view-laptop .course-content .course-grid > .course-card .course-num{
+  width:104px !important;
+  height:104px !important;
+  min-width:104px;
+  font-size:46px !important;
+  border-radius:26px;
+  margin:0 auto 24px;
+}
+body.view-laptop .course-content .course-grid > .course-card h3{
+  font-size:30px !important;
+  text-align:center;
+  margin-bottom:12px;
+}
+body.view-laptop .course-content .course-grid > .course-card p{
+  font-size:17px !important;
+  line-height:1.9;
+  text-align:center;
+}
+body.view-laptop .course-content .course-grid > .course-card .btn{
+  font-size:16px;
+  padding:13px 20px;
+  align-self:center;
+}
+body.view-laptop .course-content .lectures{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:30px;
+  padding:26px;
+}
+body.view-laptop .course-content .lecture{
+  min-height:320px;
+  padding:32px 28px;
+  border-radius:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+body.view-laptop .course-content .lecture h4{
+  font-size:24px !important;
+  line-height:1.8;
+}
+body.view-laptop .course-content .lecture .time{font-size:16px}
+body.view-laptop .course-content .lecture .room,
+body.view-laptop .course-content .lecture .teacher{font-size:15px;line-height:1.9}
+@media(max-width:1100px) and (min-width:801px){
+  body.view-laptop .course-content .course-grid,
+  body.view-laptop .course-content .lectures{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+
+
+/* ===== إصلاح قسم اللابتوب بعد اختيار الأسبوع ===== */
+/* عند اختيار الأسبوع لا نريد أن يبقى مكان فارغ خاص بقائمة الأسابيع؛
+   محتوى الأيام والمحاضرات يستعمل عرض شاشة اللابتوب بالكامل. */
+body.view-laptop .course-split:not(.week-choosing){
+  display:block;
+  width:100%;
+  max-width:none;
+  padding-right:0;
+  grid-template-columns:1fr;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid{
+  width:100%;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:34px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid > .course-card{
+  min-height:390px;
+  padding:42px 34px !important;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid > .course-card .course-num{
+  width:120px !important;
+  height:120px !important;
+  min-width:120px;
+  font-size:54px !important;
+  margin-bottom:28px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid > .course-card h3{
+  font-size:34px !important;
+  margin-bottom:16px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid > .course-card p{
+  font-size:18px !important;
+  line-height:2;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid > .course-card .btn{
+  font-size:18px;
+  padding:15px 24px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .day{
+  width:100%;
+  max-width:none;
+  margin:18px 0 0;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .day-head{
+  padding:26px 32px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .day-head h3{
+  font-size:26px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .day-head span{
+  font-size:16px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .lectures{
+  width:100%;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:28px;
+  padding:28px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .lecture{
+  min-height:340px;
+  padding:34px 30px;
+  border-radius:24px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .lecture h4{
+  font-size:24px !important;
+  line-height:1.9;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .lecture .time{
+  font-size:16px;
+}
+body.view-laptop .course-split:not(.week-choosing) .course-content .lecture .room,
+body.view-laptop .course-split:not(.week-choosing) .course-content .lecture .teacher{
+  font-size:16px;
+  line-height:2;
+}
+@media(max-width:1100px) and (min-width:801px){
+  body.view-laptop .course-split:not(.week-choosing) .course-content .course-grid,
+  body.view-laptop .course-split:not(.week-choosing) .course-content .lectures{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner container">
+    <div class="brand"><div class="shield">⌁</div><span>مرجع المرحلة الثانية — الأمن السيبراني</span></div>
+    <div>
+      <button class="btn small" onclick="showHome()">الرئيسية</button>
+      <button class="btn small" onclick="showNotifications()">🔔 التبليغات</button>
+      <button class="btn small" onclick="showLogin()">دخول الأدمن</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+<div id="toast" class="toast"></div>
+<footer class="footer">قسم هندسة تقنيات الأمن السيبراني — جامعة مدينة العلم</footer>
+
+<script>
+const ADMIN_USER="jamil";
+const ADMIN_PASS="Jamil@2026";
+
+const defaultData={
+  "settings":{course2Open:false},
+  "notifications":[
+    {id:1,title:"مرحباً بكم",text:"تابعوا هنا آخر التبليغات والملاحظات الخاصة بالمرحلة الثانية.",date:"2026-09-29"}
+  ],
+  "course1":{
+    weeks:Array.from({length:15},(_,i)=>({
+      week:i+1,
+      days:{
+        "السبت":[
+          {time:"8:30 - 10:00",title:"تركيب ومعمارية الحاسوب",room:"18",teacher:"م.م. أشرف سمير"},
+          {time:"10:00 - 11:30",title:"هياكل البيانات والخوارزميات",room:"21",teacher:"م.م. أشرف سمير"},
+          {time:"11:30 - 1:00",title:"الرياضيات الهندسية",room:"20",teacher:"د. جمال التويجري"}
+        ],
+        "الاثنين":[
+          {time:"8:30 - 10:00",title:"تركيب ومعمارية الحاسوب",room:"25",teacher:"م. سري عبد الكريم"},
+          {time:"10:00 - 11:30",title:"أسس الإلكترونيات",room:"17",teacher:"د. سعد طه"},
+          {time:"11:30 - 1:00",title:"مبادئ لينكس",room:"1",teacher:"علي جلوب"},
+          {time:"1:00 - 2:00",title:"أسس الإلكترونيات",room:"6",teacher:"حسام الدين فحطان"}
+        ],
+        "الثلاثاء":[
+          {time:"8:30 - 10:00",title:"مبادئ لينكس",room:"15",teacher:"د. يحيى حافظ"},
+          {time:"10:00 - 11:30",title:"هياكل البيانات والخوارزميات",room:"24",teacher:"ثمارة زيد"},
+          {time:"1:00 - 2:00",title:"جرائم نظام البعث",room:"15",teacher:"م.م. شهد عماد"}
+        ]
+      }
+    }))
+  },
+  "course2":{
+    weeks:Array.from({length:15},(_,i)=>({
+      week:i+1,
+      days:{
+        "السبت":[{time:"8:30 - 10:00"},{time:"10:00 - 11:30"},{time:"11:30 - 1:00"}],
+        "الاثنين":[{time:"8:30 - 10:00"},{time:"10:00 - 11:30"},{time:"11:30 - 1:00"},{time:"1:00 - 2:00"}],
+        "الثلاثاء":[{time:"8:30 - 10:00"},{time:"10:00 - 11:30"},{time:"1:00 - 2:00"}]
+      }
+    }))
+  }
+};
+
+function loadData(){
+  try{
+    const saved=localStorage.getItem("cyberStage2Data");
+    if(saved){
+      const parsed=JSON.parse(saved);
+      if(!parsed.settings) parsed.settings={course2Open:false};
+      if(typeof parsed.settings.course2Open!=="boolean") parsed.settings.course2Open=false;
+      if(!Array.isArray(parsed.notifications)) parsed.notifications=[];
+      return parsed;
+    }
+  }catch(e){}
+  return structuredClone(defaultData);
+}
+let data=loadData();
+
+// المزامنة المركزية عبر Netlify Blobs — localStorage يبقى نسخة مؤقتة فقط.
+const DATA_API="/api/data";
+let serverHasData=false;
+async function syncFromServer(){
+  try{
+    const r=await fetch(DATA_API+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error("sync http "+r.status);
+    const payload=await r.json();
+    if(payload && payload.data){
+      data=payload.data;
+      if(!data.settings) data.settings={course2Open:false};
+      if(typeof data.settings.course2Open!=="boolean") data.settings.course2Open=false;
+      if(!Array.isArray(data.notifications)) data.notifications=[];
+      localStorage.setItem("cyberStage2Data",JSON.stringify(data));
+      serverHasData=true;
+      return true;
+    }
+    return false;
+  }catch(e){
+    console.warn("المزامنة غير متاحة حالياً",e);
+    return false;
+  }
+}
+async function saveData(showToast=true){
+  localStorage.setItem("cyberStage2Data",JSON.stringify(data));
+  try{
+    const r=await fetch(DATA_API,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+    if(!r.ok) throw new Error("save http "+r.status);
+    serverHasData=true;
+    if(showToast) toast("تم حفظ التغييرات ومزامنتها على كل الأجهزة");
+    return true;
+  }catch(e){
+    console.error("فشل الحفظ المركزي",e);
+    if(showToast) toast("تم الحفظ على هذا الجهاز فقط — المزامنة غير متاحة");
+    return false;
+  }
+}
+let admin=false;
+let currentCourse="course1", currentWeek=1, selected={day:"السبت",index:0};
+let showDays=false;
+let choosingWeek=true;
+
+// saveData is defined above with server synchronization.
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800)}
+function resetView(){document.body.classList.remove("view-mobile","view-laptop");}
+function showHome(){
+ resetView();
+ document.getElementById("app").innerHTML=`<section class="hero"><div class="hero-card">
+  <div class="kicker">المرحلة الثانية • 2026 / 2027</div>
+  <h1>جامعة مدينة العلم<br>كلية الهندسة<br>هندسة تقنيات الأمن السيبراني</h1>
+  <p class="student">إعداد الطالب: جميل محمد جميل</p>
+  <div class="device-grid">
+    <button class="device-ref" onclick="showNotifications()">
+      <span class="device-icon">🔔</span><span><h3>التبليغات</h3><p>آخر الإعلانات والملاحظات والملفات الخاصة بالمرحلة الثانية</p></span>
+    </button>
+    <button class="device-ref" onclick="showReference('mobile')">
+      <span class="device-icon">📱</span><span><h3>مرجع المرحلة الثانية — الهاتف</h3><p>نسخة مصممة ومضبوطة لشاشة الهاتف</p></span>
+    </button>
+    <button class="device-ref" onclick="showReference('laptop')">
+      <span class="device-icon">💻</span><span><h3>مرجع المرحلة الثانية — اللابتوب</h3><p>نسخة موسعة ومضبوطة للشاشات الكبيرة</p></span>
+    </button>
+  </div>
+ </div></section>`;
+}
+function showReference(mode){
+ document.body.classList.remove("view-mobile","view-laptop");
+ document.body.classList.add(mode==="mobile"?"view-mobile":"view-laptop");
+ showCourses();
+}
+
+let calcExpr="";
+function showCalculator(){
+  document.getElementById("app").innerHTML=`<section class="calc-page">
+    <div class="page-title">
+      <div><h2>⌨ الحاسبة</h2><div class="subtitle">حاسبة سريعة داخل مرجع المرحلة الثانية</div></div>
+      <button class="btn small" onclick="showHome()">← الرئيسية</button>
+    </div>
+    <div class="calc-box">
+      <div id="calcScreen" class="calc-screen">0</div>
+      <div class="calc-grid">
+        <button class="calc-key clear" onclick="calcClear()">C</button>
+        <button class="calc-key op" onclick="calcAdd('(')">(</button>
+        <button class="calc-key op" onclick="calcAdd(')')">)</button>
+        <button class="calc-key op" onclick="calcAdd('/')">÷</button>
+        <button class="calc-key" onclick="calcAdd('7')">7</button>
+        <button class="calc-key" onclick="calcAdd('8')">8</button>
+        <button class="calc-key" onclick="calcAdd('9')">9</button>
+        <button class="calc-key op" onclick="calcAdd('*')">×</button>
+        <button class="calc-key" onclick="calcAdd('4')">4</button>
+        <button class="calc-key" onclick="calcAdd('5')">5</button>
+        <button class="calc-key" onclick="calcAdd('6')">6</button>
+        <button class="calc-key op" onclick="calcAdd('-')">−</button>
+        <button class="calc-key" onclick="calcAdd('1')">1</button>
+        <button class="calc-key" onclick="calcAdd('2')">2</button>
+        <button class="calc-key" onclick="calcAdd('3')">3</button>
+        <button class="calc-key op" onclick="calcAdd('+')">+</button>
+        <button class="calc-key" onclick="calcAdd('0')">0</button>
+        <button class="calc-key" onclick="calcAdd('.')">.</button>
+        <button class="calc-key op" onclick="calcBack()">⌫</button>
+        <button class="calc-key equal" onclick="calcResult()">=</button>
+      </div>
+    </div>
+  </section>`;
+}
+function calcRender(){const el=document.getElementById("calcScreen");if(el)el.textContent=calcExpr||"0";}
+function calcAdd(v){if(calcExpr==="خطأ")calcExpr="";calcExpr+=v;calcRender();}
+function calcClear(){calcExpr="";calcRender();}
+function calcBack(){calcExpr=calcExpr.slice(0,-1);calcRender();}
+function calcResult(){
+  try{
+    if(!calcExpr)return;
+    if(!/^[0-9+\-*/().\s]+$/.test(calcExpr))throw new Error();
+    const result=Function('"use strict";return ('+calcExpr+')')();
+    if(!Number.isFinite(result))throw new Error();
+    calcExpr=String(Math.round((result+Number.EPSILON)*100000000)/100000000);
+  }catch(e){calcExpr="خطأ";}
+  calcRender();
+}
+
+function showNotifications(){
+  const list=Array.isArray(data.notifications)?data.notifications:[];
+  const cards=list.length?list.map(n=>`
+    <article class="course-card" style="border-color:rgba(214,168,79,.42);margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <h3 style="margin:0;color:var(--gold2)">🔔 ${safe(n.title||"تبليغ")}</h3>
+        <span class="subtitle">${safe(n.date||"")}</span>
+      </div>
+      <p style="white-space:pre-wrap;line-height:1.9;margin-bottom:0">${safe(n.text||"")}</p>
+      ${n.image?`<div class="material"><img src="${n.image}" alt="صورة التبليغ" style="max-height:360px;object-fit:contain"></div>`:""}
+      ${n.fileName&&n.fileData?`<div class="material"><a href="${n.fileData}" download="${safe(n.fileName)}">📄 تحميل الملف: ${safe(n.fileName)}</a></div>`:""}
+    </article>`).join("") :
+    `<div class="hero-card" style="max-width:760px;margin:30px auto;text-align:center"><h2>لا توجد تبليغات حالياً</h2><p class="subtitle">سيتم نشر التبليغات هنا عند إضافتها.</p></div>`;
+  document.getElementById("app").innerHTML=`<section class="page container">
+    <div class="page-title">
+      <div><h2>🔔 التبليغات</h2><div class="subtitle">آخر الإعلانات والملاحظات والملفات الخاصة بالمرحلة الثانية.</div></div>
+      <button class="btn" onclick="showHome()">← الرئيسية</button>
+    </div>
+    ${cards}
+  </section>`;
+}
+
+function showCourses(){
+ const course2Open=!!(data.settings&&data.settings.course2Open);
+ document.getElementById("app").innerHTML=`<section class="page container">
+ <div class="page-title"><div><h2>مرجع المرحلة الثانية — ${document.body.classList.contains("view-mobile")?"الهاتف":"اللابتوب"}</h2><div class="subtitle">اختر الكورس للوصول إلى الأسابيع والمحاضرات والمواد المرفوعة.</div></div><button class="btn" onclick="showHome()">← الرئيسية</button></div>
+ <div class="course-grid">
+  <div class="course-card"><div class="course-num">01</div><h3>الكورس الأول</h3><p>15 أسبوعاً دراسياً • السبت، الاثنين، الثلاثاء</p><button class="btn gold" onclick="openCourse('course1')">فتح الكورس</button></div>
+  <div class="course-card"><div class="course-num">02</div><h3>الكورس الثاني</h3><p>${course2Open?'15 أسبوعاً دراسياً • السبت، الاثنين، الثلاثاء':'غير متاح حالياً • Soon'}</p><button class="btn ${course2Open?'gold':''}" ${course2Open?'':'style="opacity:.75"'} onclick="openCourse('course2')">${course2Open?'فتح الكورس':'Soon 🚧'}</button></div>
+ </div></section>`;
+}
+function openCourse(course){
+ currentCourse=course;currentWeek=1;window.activeDay=null;
+ if(course==="course2" && !(data.settings&&data.settings.course2Open)){ showComingSoon(); return; }
+ showWeek();
+}
+function showComingSoon(){
+ document.getElementById("app").innerHTML=`<section class="page container">
+  <div class="page-title">
+    <div><h2>الكورس الثاني</h2><div class="subtitle">هذا القسم قيد التجهيز حالياً.</div></div>
+    <button class="btn" onclick="showCourses()">← الكورسات</button>
+  </div>
+  <div class="hero-card" style="text-align:center;max-width:760px;margin:50px auto;padding:55px 25px">
+    <div style="font-size:72px;margin-bottom:15px">🚧</div>
+    <h2 style="font-size:34px;margin-bottom:12px">Soon</h2>
+    <p style="font-size:19px;color:var(--muted);line-height:1.9">الكورس الثاني سيكون متاحاً قريباً.<br>نقوم حالياً بتجهيز المحتوى والمحاضرات.</p>
+    <button class="btn gold" onclick="showCourses()">العودة إلى الكورسات</button>
+  </div>
+ </section>`;
+}
+function showWeek(selectedDay=null){
+  const w=data[currentCourse].weeks[currentWeek-1];
+  const dayNames=["السبت","الاثنين","الثلاثاء"];
+  const activeDay=selectedDay || null;
+  const tabs=Array.from({length:15},(_,i)=>`<button class="tab ${i+1===currentWeek?'active':''}" onclick="setWeek(${i+1})">الأسبوع ${i+1}</button>`).join("");
+  let content="";
+  if(activeDay){
+    const lectures=w.days[activeDay]||[];
+    const dayClass=activeDay==="السبت"?"sat":activeDay==="الاثنين"?"mon":"tue";
+    content=`<section class="day" style="margin-top:10px">
+      <div class="day-head ${dayClass}"><div><h3>جدول يوم ${activeDay}</h3><span>${lectures.length} محاضرات حسب الجدول</span></div>
+      <button class="btn small" onclick="showDays=true;showWeek()">← الأيام</button></div>
+      <div class="lectures">${lectures.map((l,i)=>lectureCard(activeDay,i,l)).join("")}</div>
+    </section>`;
+  }else if(showDays){
+    const dayButtons=dayNames.map(day=>{
+      const count=(w.days[day]||[]).length;
+      const cls=day==="السبت"?"day-card-sat":day==="الاثنين"?"day-card-mon":"day-card-tue";
+      const icon=day==="السبت"?"🌟":day==="الاثنين"?"📘":"🛡️";
+      return `<button class="course-card ${cls}" style="text-align:right;padding:20px" onclick="showWeek('${day}')">
+        <div class="course-num" style="font-size:18px">${icon}</div><h3>${day}</h3>
+        <p>${count} محاضرات حسب جدول هذا اليوم</p><span class="btn gold">عرض جدول ${day}</span>
+      </button>`;
+    }).join("");
+    content=`<div class="course-grid">${dayButtons}</div>`;
+  }else{
+    content=`<div class="hero-card" style="max-width:760px;margin:10px auto 0;text-align:center;padding:30px 20px">
+      <h3 style="margin:0 0 8px;color:var(--gold2)">اختر الأسبوع</h3>
+      <p class="subtitle" style="margin:0">بعد اختيار الأسبوع ستظهر أيام الدراسة، ثم اختر اليوم لعرض المحاضرات.</p>
+    </div>`;
+  }
+  document.getElementById("app").innerHTML=`<section class="page container">
+   <div class="page-title"><div style="width:100%;text-align:center"><h2 style="text-align:center">${currentCourse==="course1"?"الكورس الأول":"الكورس الثاني"} — ${showDays?"الأسبوع "+currentWeek:"الأسابيع"}</h2>
+   <div class="subtitle">&nbsp;</div></div>
+   <div style="display:flex;gap:8px;align-items:center">
+   ${!choosingWeek?`<button class="btn" onclick="choosingWeek=true;showWeek()">الأسابيع</button>`:""}
+   <button class="btn" onclick="showCourses()">← الكورسات</button>
+ </div></div>
+   <div class="course-split ${choosingWeek?"week-choosing":""}">
+     <div class="course-content">${content}</div>
+     ${choosingWeek?`<aside class="tabs">${tabs}</aside>`:""}
+   </div>
+ </section>`;
+}
+function setWeek(n){currentWeek=n;showDays=true;choosingWeek=false;window.activeDay=null;showWeek()}
+function safe(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function lectureCard(day,i,l){
+ const has= l.notes || l.link || l.fileName || l.image;
+ return `<article class="lecture">
+   <div class="time">${safe(l.time||"وقت غير محدد")}</div>
+   <h4>${safe(l.title||"محاضرة لم تُحدد بعد")}</h4>
+   ${l.room?`<div class="room">القاعة: ${safe(l.room)}</div>`:""}
+   ${l.teacher?`<div class="teacher">المحاضر: ${safe(l.teacher)}</div>`:""}
+   ${has?`<div class="material">
+      ${l.image?`<img src="${l.image}" alt="مادة المحاضرة">`:""}
+      ${l.link?`<a href="${safe(l.link)}" target="_blank" rel="noopener">🔗 فتح الرابط / المادة</a>`:""}
+      ${l.fileName&&l.fileData?`<a href="${l.fileData}" download="${safe(l.fileName)}">📄 تحميل ${safe(l.fileName)}</a>`:""}
+      ${l.notes?`<div class="notes">${safe(l.notes)}</div>`:""}
+   </div>`:""}
+ </article>`;
+}
+
+function showLogin(){
+ document.getElementById("app").innerHTML=`<div class="login"><h2>دخول الأدمن</h2><p class="subtitle">هذه الواجهة مخصصة لإدارة محاضرات ومواد المرحلة الثانية.</p>
+ <div class="field"><label>اسم المستخدم</label><input id="au" value="jamil"></div>
+ <div class="field"><label>كلمة المرور</label><input id="ap" type="password"></div>
+ <button class="btn gold" onclick="login()">دخول لوحة التحكم</button>
+ </div>`;
+}
+function login(){
+ if(document.getElementById("au").value===ADMIN_USER && document.getElementById("ap").value===ADMIN_PASS){admin=true;showAdmin();}
+ else toast("بيانات الدخول غير صحيحة");
+}
+function showAdmin(){
+ const days=Object.entries(data[currentCourse].weeks[currentWeek-1].days);
+ const list=days.flatMap(([d,ls])=>ls.map((l,i)=>({d,i,l}))).map((x,n)=>`
+  <button class="btn ${x.d===selected.day&&x.i===selected.index?'active':''}" onclick="selectLecture('${x.d}',${x.i})">${x.d} — ${x.i+1}<br><small>${safe(x.l.title||"محاضرة فارغة")}</small></button>`).join("");
+ const l=data[currentCourse].weeks[currentWeek-1].days[selected.day][selected.index];
+ document.getElementById("app").innerHTML=`<section class="page container">
+  <div class="page-title"><div><h2>لوحة تحكم الأدمن</h2><div class="subtitle">جميل محمد جميل — إدارة محتوى المحاضرات</div></div>
+  <div><button class="btn" onclick="showWeek()">عرض الموقع</button> <button class="btn danger" onclick="admin=false;showHome()">تسجيل خروج</button></div></div>
+  <div class="admin-panel" style="margin-bottom:18px">
+   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <select id="acourse" onchange="currentCourse=this.value;currentWeek=1;selected={day:'السبت',index:0};showAdmin()">
+      <option value="course1" ${currentCourse==="course1"?"selected":""}>الكورس الأول</option><option value="course2" ${currentCourse==="course2"?"selected":""}>الكورس الثاني</option>
+    </select>
+    <select id="aweek" onchange="currentWeek=Number(this.value);selected={day:'السبت',index:0};showAdmin()">
+      ${Array.from({length:15},(_,i)=>`<option value="${i+1}" ${currentWeek===i+1?"selected":""}>الأسبوع ${i+1}</option>`).join("")}
+    </select>
+   </div>
+  </div>
+  <div class="admin-panel" style="margin-bottom:18px">
+   <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+    <div><strong>حالة الكورس الثاني:</strong> <span>${(data.settings&&data.settings.course2Open)?"متاح للطلاب":"مغلق — يظهر Soon"}</span></div>
+    <button class="btn ${data.settings&&data.settings.course2Open?"danger":"gold"}" onclick="toggleCourse2()">${data.settings&&data.settings.course2Open?"إغلاق الكورس الثاني":"فتح الكورس الثاني"}</button>
+   </div>
+  </div>
+  <div class="admin-panel" style="margin-bottom:18px">
+    <h3 style="margin-top:0">🔔 إدارة التبليغات</h3>
+    <div class="field"><label>عنوان التبليغ</label><input id="ntitle" placeholder="مثلاً: تغيير موعد المحاضرة"></div>
+    <div class="field"><label>نص التبليغ</label><textarea id="ntext" placeholder="اكتب نص التبليغ هنا..."></textarea></div>
+    <div class="field"><label>التاريخ</label><input id="ndate" type="date"></div>
+    <div class="field"><label>إرفاق صورة (اختياري)</label><input id="nimage" type="file" accept="image/*"></div>
+    <div class="field"><label>إرفاق ملف (PDF / Word / PowerPoint / TXT — اختياري)</label><input id="nfile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt"></div>
+    <div class="editor-actions">
+      <button class="btn gold" onclick="addNotification()">نشر التبليغ</button>
+      <button class="btn" onclick="showNotifications()">عرض التبليغات</button>
+    </div>
+    <div style="margin-top:18px;display:grid;gap:8px">
+      ${(data.notifications||[]).map(n=>`<div class="btn" style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+        <span>🔔 ${safe(n.title||"تبليغ")} <small style="color:var(--muted)">(${safe(n.date||"")})</small></span>
+        <button class="btn danger small" onclick="deleteNotification(${n.id})">حذف</button>
+      </div>`).join("")}
+    </div>
+  </div>
+  <div class="admin-grid"><aside class="admin-panel"><h3>المحاضرات</h3><div class="admin-list">${list}</div></aside>
+  <section class="editor">
+    <h3>تعديل المحاضرة — ${selected.day} / ${selected.index+1}</h3>
+    <div class="field"><label>اسم الموضوع / المحاضرة</label><input id="etitle" value="${safe(l.title||"")}"></div>
+    <div class="field"><label>الوقت</label><input id="etime" value="${safe(l.time||"")}"></div>
+    <div class="field"><label>القاعة</label><input id="eroom" value="${safe(l.room||"")}"></div>
+    <div class="field"><label>اسم المحاضر</label><input id="eteacher" value="${safe(l.teacher||"")}"></div>
+    <div class="field"><label>رابط خارجي (Google Drive / Telegram / موقع...)</label><input id="elink" type="url" placeholder="https://..." value="${safe(l.link||"")}"></div>
+    <div class="field"><label>رفع PDF أو مستند</label><input id="efile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt"></div>
+    ${l.fileName?`<div class="subtitle">الملف الحالي: ${safe(l.fileName)} <button class="btn small" onclick="removeFile()">حذف الملف</button></div>`:""}
+    <div class="field"><label>رفع صورة / لقطة شاشة</label><input id="eimage" type="file" accept="image/*"></div>
+    ${l.image?`<div><img class="preview-img" src="${l.image}"></div><br>`:""}
+    <div class="field"><label>تفاصيل المحاضرة / الملخص</label><textarea id="enotes" placeholder="اكتب ما تم أخذه في المحاضرة...">${safe(l.notes||"")}</textarea></div>
+    <div class="editor-actions">
+      <button class="btn gold" onclick="saveLecture()">حفظ التغييرات</button>
+      <button class="btn danger" onclick="clearLecture()">تفريغ بيانات المحاضرة</button>
+    </div>
+  </section></div>
+ </section>`;
+}
+async function addNotification(){
+  const title=document.getElementById("ntitle").value.trim();
+  const text=document.getElementById("ntext").value.trim();
+  const date=document.getElementById("ndate").value || new Date().toISOString().slice(0,10);
+  const imageFile=document.getElementById("nimage").files[0];
+  const attachment=document.getElementById("nfile").files[0];
+  if(!title || !text){toast("اكتب عنوان ونص التبليغ أولاً");return;}
+  if(!Array.isArray(data.notifications)) data.notifications=[];
+  const notification={id:Date.now(),title,text,date};
+  if(imageFile) notification.image=await readFile(imageFile);
+  if(attachment){
+    notification.fileData=await readFile(attachment);
+    notification.fileName=attachment.name;
+  }
+  data.notifications.unshift(notification);
+  await saveData(false);
+  toast("تم نشر التبليغ ومزامنته على كل الأجهزة");
+  showAdmin();
+}
+async function deleteNotification(id){
+  data.notifications=(data.notifications||[]).filter(n=>n.id!==id);
+  await saveData(false);
+  toast("تم حذف التبليغ ومزامنته");
+  showAdmin();
+}
+
+async function toggleCourse2(){
+ if(!data.settings) data.settings={course2Open:false};
+ data.settings.course2Open=!data.settings.course2Open;
+ await saveData(false);
+ toast(data.settings.course2Open?"تم فتح الكورس الثاني للطلاب ومزامنته":"تم إغلاق الكورس الثاني ومزامنته");
+ showAdmin();
+}
+function selectLecture(day,index){selected={day,index};showAdmin()}
+function readFile(file){return new Promise((resolve,reject)=>{if(!file)return resolve(null);const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}
+async function saveLecture(){
+ const l=data[currentCourse].weeks[currentWeek-1].days[selected.day][selected.index];
+ l.title=document.getElementById("etitle").value.trim();l.time=document.getElementById("etime").value.trim();
+ l.room=document.getElementById("eroom").value.trim();l.teacher=document.getElementById("eteacher").value.trim();
+ l.link=document.getElementById("elink").value.trim();l.notes=document.getElementById("enotes").value.trim();
+ const img=document.getElementById("eimage").files[0], file=document.getElementById("efile").files[0];
+ if(img) l.image=await readFile(img);
+ if(file){l.fileData=await readFile(file);l.fileName=file.name}
+ saveData();showAdmin();
+}
+function removeFile(){const l=data[currentCourse].weeks[currentWeek-1].days[selected.day][selected.index];delete l.fileData;delete l.fileName;await saveData();showAdmin()}
+function clearLecture(){
+ const l=data[currentCourse].weeks[currentWeek-1].days[selected.day][selected.index];
+ const keep={time:l.time};data[currentCourse].weeks[currentWeek-1].days[selected.day][selected.index]=keep;await saveData();showAdmin();
+}
+syncFromServer().then(()=>showHome());
+</script>
+</body>
+</html>
